@@ -1,0 +1,139 @@
+<div id="preloader">
+  <div class="scene">
+    <div class="tilt">
+      <div class="extrude">
+        <!-- 40 camadas -->
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+        <img src="preloader/loader.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #73ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+}
+
+/* contentor principal */
+.scene {
+  width: clamp(220px, 40vw, 420px);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.tilt {
+  transform: rotateX(44deg) rotateY(31deg) rotateZ(-16deg) translateX(20px);
+  transform-style: preserve-3d;
+}
+
+.extrude {
+  position: relative;
+  width: 16rem;
+  aspect-ratio: 1 / 1;
+  transform-style: preserve-3d;
+  animation: spin 2.5s cubic-bezier(0.66, 0, 0.34, 1) infinite;
+}
+
+.extrude img {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.extrude img:nth-of-type(1) { transform: translateZ(-2px)}
+.extrude img:nth-of-type(2) { transform: translateZ(-4px)}
+.extrude img:nth-of-type(3) { transform: translateZ(-6px)}
+.extrude img:nth-of-type(4) { transform: translateZ(-8px)}
+.extrude img:nth-of-type(5) { transform: translateZ(-10px)}
+.extrude img:nth-of-type(6) { transform: translateZ(-12px)}
+.extrude img:nth-of-type(7) { transform: translateZ(-14px)}
+.extrude img:nth-of-type(8) { transform: translateZ(-16px)}
+.extrude img:nth-of-type(9) { transform: translateZ(-18px)}
+.extrude img:nth-of-type(10) { transform: translateZ(-20px)}
+.extrude img:nth-of-type(11) { transform: translateZ(-22px)}
+.extrude img:nth-of-type(12) { transform: translateZ(-24px)}
+.extrude img:nth-of-type(13) { transform: translateZ(-26px)}
+.extrude img:nth-of-type(14) { transform: translateZ(-28px)}
+.extrude img:nth-of-type(15) { transform: translateZ(-30px)}
+.extrude img:nth-of-type(16) { transform: translateZ(-32px)}
+.extrude img:nth-of-type(17) { transform: translateZ(-34px)}
+.extrude img:nth-of-type(18) { transform: translateZ(-36px)}
+.extrude img:nth-of-type(19) { transform: translateZ(-38px)}
+.extrude img:nth-of-type(20) { transform: translateZ(-40px)}
+.extrude img:nth-of-type(21) { transform: translateZ(-42px)}
+.extrude img:nth-of-type(22) { transform: translateZ(-44px)}
+.extrude img:nth-of-type(23) { transform: translateZ(-46px)}
+.extrude img:nth-of-type(24) { transform: translateZ(-48px)}
+.extrude img:nth-of-type(25) { transform: translateZ(-50px)}
+.extrude img:nth-of-type(26) { transform: translateZ(-52px)}
+.extrude img:nth-of-type(27) { transform: translateZ(-54px)}
+.extrude img:nth-of-type(28) { transform: translateZ(-56px)}
+.extrude img:nth-of-type(29) { transform: translateZ(-58px)}
+.extrude img:nth-of-type(30) { transform: translateZ(-60px)}
+.extrude img:nth-of-type(31) { transform: translateZ(-62px)}
+.extrude img:nth-of-type(32) { transform: translateZ(-64px)}
+.extrude img:nth-of-type(33) { transform: translateZ(-66px)}
+.extrude img:nth-of-type(34) { transform: translateZ(-68px)}
+.extrude img:nth-of-type(35) { transform: translateZ(-70px)}
+.extrude img:nth-of-type(36) { transform: translateZ(-72px)}
+.extrude img:nth-of-type(37) { transform: translateZ(-74px)}
+.extrude img:nth-of-type(38) { transform: translateZ(-76px)}
+.extrude img:nth-of-type(39) { transform: translateZ(-78px)}
+.extrude img:nth-of-type(40) { transform: translateZ(-80px)}
+
+@keyframes spin {
+  from { transform: rotateZ(0deg); }
+  to   { transform: rotateZ(360deg); }
+}
+</style>
