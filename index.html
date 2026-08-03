@@ -1,249 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Astertype Studio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astertype Studio</title>
+</head>
+<body>
+
+<div id="preloader">
+  <header class="topbar">
+    <div class="logo">ASTERTYPE<br>STUDIO</div>
+  </header>
+
+  <div class="scene">
+    <div class="tilt">
+      <div class="extrude">
+        <img src="loader.svg" alt="icon">
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>[STAY<br>TUNED]</h1>
+    <p class="subtitle">What's worth making <br>takes time</p>
+    <a href="https://www.instagram.com/andre_marques._" class="ig-btn">Follow me on instagram</a>
+  </div>
+</div>
 
 <style>
-html, body {
-  margin: 0;
-  height: 100%;
-  background: #FF1B1B;
+@font-face {
+  font-family: 'Switzer';
+  src: url('Switzer-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('Switzer-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #040509;
+  transition: opacity 0.8s ease;
+  font-family: 'Switzer', sans-serif;
+  overflow: hidden;
+}
+
+/* logo — igual em mobile e desktop */
+.topbar {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+
+.logo {
+  font-weight: 500;
+  font-style: italic;
+  color: #E5E5E5;
+  font-size: 1.1rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+/* loader — tamanho fixo, sempre centrado no ecra */
+.scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1200px;
-}
-
-/* contentor principal */
-.scene {
-  width: clamp(220px, 40vw, 420px);
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(20px, 4vh, 60px);
   transform-style: preserve-3d;
 }
 
-/* mantém a tua perspectiva fixa */
 .tilt {
   transform: rotateX(44deg) rotateY(31deg) rotateZ(-16deg) translateX(20px);
   transform-style: preserve-3d;
 }
 
-
-/* aqui roda todo o volume */
 .extrude {
   position: relative;
-  width: 16rem;
+  width: 8rem;
   aspect-ratio: 1 / 1;
   transform-style: preserve-3d;
-  animation: cubic-bezier(0.66, 0, 0.34, 1) spin 2.5s infinite;
+  animation: spin 2.5s cubic-bezier(0.66, 0, 0.34, 1) infinite;
 }
-/* todas as estrelas sobrepostas */
+
 .extrude img {
   position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  top: 0;
-  left: 0;
+  height: 100%;
 }
 
-
-
-/* rotação no eixo local (já inclinado pela .tilt) */
 @keyframes spin {
   from { transform: rotateZ(0deg); }
   to   { transform: rotateZ(360deg); }
 }
 
-
-.extrude img:nth-of-type(1) { transform: translateZ(20px)}
-.extrude img:nth-of-type(2) { transform: translateZ(17px)}
-.extrude img:nth-of-type(3) { transform: translateZ(14px)}
-.extrude img:nth-of-type(4) { transform: translateZ(11px)}
-.extrude img:nth-of-type(5) { transform: translateZ(9px)}
-.extrude img:nth-of-type(6) { transform: translateZ(6px)}
-.extrude img:nth-of-type(7) { transform: translateZ(3px)}
-.extrude img:nth-of-type(8) { transform: translateZ(0px)}
-.extrude img:nth-of-type(9) { transform: translateZ(-3px)}
-.extrude img:nth-of-type(10) { transform: translateZ(-6px)}
-.extrude img:nth-of-type(11) { transform: translateZ(-9px)}
-.extrude img:nth-of-type(12) { transform: translateZ(-12px)}
-.extrude img:nth-of-type(13) { transform: translateZ(-15px)}
-.extrude img:nth-of-type(14) { transform: translateZ(-18px)}
-.extrude img:nth-of-type(15) { transform: translateZ(-21px)}
-.extrude img:nth-of-type(16) { transform: translateZ(-24px)}
-.extrude img:nth-of-type(17) { transform: translateZ(-27px)}
-.extrude img:nth-of-type(18) { transform: translateZ(-30px)}
-.extrude img:nth-of-type(19) { transform: translateZ(-33px)} 
-.extrude img:nth-of-type(20) { transform: translateZ(-36px)} 
-.extrude img:nth-of-type(21) { transform: translateZ(-39px)}
-.extrude img:nth-of-type(22) { transform: translateZ(-42px)}
-.extrude img:nth-of-type(23) { transform: translateZ(-45px)}
-.extrude img:nth-of-type(24) { transform: translateZ(-48px)}
-.extrude img:nth-of-type(25) { transform: translateZ(-51px)}
-.extrude img:nth-of-type(26) { transform: translateZ(-54px)}
-.extrude img:nth-of-type(27) { transform: translateZ(-57px)}
-.extrude img:nth-of-type(28) { transform: translateZ(-60px)}
-.extrude img:nth-of-type(29) { transform: translateZ(-63px)}
-.extrude img:nth-of-type(30) { transform: translateZ(-66px)}
-.extrude img:nth-of-type(31) { transform: translateZ(-69px)}
-.extrude img:nth-of-type(32) { transform: translateZ(-72px)}
-.extrude img:nth-of-type(33) { transform: translateZ(-75px)}
-.extrude img:nth-of-type(34) { transform: translateZ(-78px)}
-.extrude img:nth-of-type(35) { transform: translateZ(-81px)}
-.extrude img:nth-of-type(36) { transform: translateZ(-84px)}
-.extrude img:nth-of-type(37) { transform: translateZ(-87px)}
-.extrude img:nth-of-type(38) { transform: translateZ(-90px)}
-.extrude img:nth-of-type(39) { transform: translateZ(-93px)} 
-.extrude img:nth-of-type(40) { transform: translateZ(-96px)}
-
-@font-face {
-  font-family: Switer;
-  src: url(Switzer-Variable.woff);
-}
-
-@font-face {
-  font-family: switer-black;
-  src: url(Switzer-Black.woff);
-}
-
-@font-face {
-  font-family: switer-black-italic;
-  src: url(Switzer-BlackItalic.woff);
-}
-
-.Text {
-  font-family: switer-black-italic; /* use font */
-  font-size: 3rem;
-  font-weight: 1600;
-  color: #0D0D0D;
-}
-
-.SubText {
-  font-family: switer-black; /* use font */
-  font-size: 1.62rem;
-  font-weight: 100;
-}
-
-p {
-  margin-top: 2em;
-  margin-bottom: 0.1em; 
-  line-height: 2.5rem;/* valor menor ajusta o espaçamento */
-}
-
-.btn {
+/* texto — mesmas cores/estilo em mobile e desktop */
+.content {
   position: absolute;
-  margin-top: 2rem;
-  font-family: Switer;
-  width: 17.5rem;
-  font-size: 1.2rem;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  background: #0D0D0D;
-  display: inline-block;
-  border-radius: 1rem;
-  transition: background-color 0.3s cubic-bezier(0.47, 0.01, 0.19, 1);
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
 }
 
-.btn .front {
-  font-family: switer;
+h1 {
+  font-weight: 600;
+  color: #E5E5E5;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 2rem;
+}
+
+.subtitle {
+  font-weight: 600;
+  color: #868687;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0 0 1.25rem;
+}
+
+.ig-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3rem;
-  padding: 0.35em 1.5em;
-  color: #EFEFED;
-  transition: color 0.3s cubic-bezier(0.47, 0.01, 0.19, 1),
-              font-variation-settings 0.3s cubic-bezier(0.47, 0.01, 0.19, 1);
+  height: 40px;
+  width: 100%;
+  background: #313131;
+  color: #9E9E9E;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.63, 0, 0.36, 1);
 }
 
-.btn:hover .front {
-  font-family: switer;
-  color: #adadad;
-  font-weight: 900;
-  
+.ig-btn:hover {
+  background: #9E9E9E;
+  color: #313131;
 }
 
+/* desktop — so ajusta espacamento e larguras, nao cores/design */
+@media (min-width: 900px) {
+  .topbar {
+    top: 20px;
+    left: 40px;
+  }
 
-@media (max-width: 480px) {
-  body {
-    padding: 20px;
+  .content {
+    left: 40px;
+    right: auto;
+    bottom: 60px;
+    max-width: 420px;
+  }
+
+  .ig-btn {
+    width: auto;
+    padding: 0 2rem;
   }
 }
 </style>
-</head>
-
-<body>
-
-
-<div class="scene">
-  <div class="tilt">
-    <div class="extrude">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-      <img src="loader.svg" alt="star">
-    </div>
-  </div>
-  <div class="Text">
-    <p>ASTERTYPE<br>STUDIO</p>
-    <div class="SubText">Launching in late 2026</div>
-    <a href="https://www.instagram.com/andre_marques._?igsh=bnZqdDU0MDZhN2M3"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="btn pushable">
-      <span class="front">
-        Stay tuned
-      </span>
-    </a>
-  </div>
-</div>
 
 </body>
 </html>
