@@ -178,6 +178,22 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
+/* ---------- Custom cursors (SVG, 32×32) ----------
+   default  = cursor-02   hotspot 13 4
+   pointer  = cursor-03   hotspot 9 1   (links + buttons)
+   press    = cursor-04   hotspot 19 3  (while pressing a link/button)
+   Only for devices with a mouse. The last value is the fallback cursor. */
+:root {
+  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M9.2,12.79l-1.77-2.53c-2.14-3.06-1.4-7.28,1.66-9.42l8.82,12.6,3.03-2.12c1.81-1.27,4.3-.83,5.57.98h0l-3.72,8.11,1.45,2.07-12.4,8.68-7.37-10.53L9.2,12.79Z'/%3E%3C/svg%3E") 9 1, pointer;
+  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M26.57,16v3.67c0,5.25-4.25,9.5-9.5,9.5h-6.97c0-.31-4.67-12.63-4.67-12.63l10.02-4.91v-2.04c0-3.74,3.03-6.76,6.76-6.76v11.34h-6.49v2.28c0,2.12,1.05,3.99,2.65,5.13-1.58.9-2.65,2.6-2.65,4.54h1.83c0-1.86,1.52-3.38,3.38-3.38h1.07v-1.83c-2.45,0-4.45-2-4.45-4.46v-.45H26.57Z'/%3E%3C/svg%3E") 19 3, pointer;
+  --cursor-press: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M25.45,2.92v9.17l-5.76-5.76-.07-.07c.29-.5.64-.95,1.05-1.36C21.89,3.68,23.58,2.92,25.45,2.92Z'/%3E%3Cpath fill='%23fff' d='M25.45,14.68v14.4h-11.77c-3.11,0-5.78-1.85-6.99-4.5-.48-1.06.33-2.26,1.49-2.26h2.51c.39,1.3,1.6,2.24,3.04,2.21,1.64-.02,3.02-1.38,3.08-3.02.05-1.78-1.37-3.23-3.13-3.23-1.41,0-2.6.93-2.99,2.21h-2.51c-1.16,0-1.97-1.2-1.48-2.26,1.2-2.65,3.87-4.49,6.98-4.49.48,0,.94.05,1.39.13l-1.38-1.39c-1.32-1.31-1.98-3.04-1.98-4.78s.66-3.46,1.98-4.78l2.29,2.3,1.12,1.11h0l7.44,7.44L25.45,14.68Z'/%3E%3C/svg%3E") 13 4, auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: var(--cursor-default); }
+  a, button, [role="button"], summary, label[for] { cursor: var(--cursor-pointer); }
+  a:active, button:active, [role="button"]:active { cursor: var(--cursor-press); }
+}
+
 /* ---------- Navigation ---------- */
 .nav {
   position: sticky;
@@ -212,9 +228,7 @@ html.lenis, html.lenis body { height: auto; }
 .nav__link:hover { color: var(--white); }
 
 .nav__lang {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 400;            /* Figma: H3 node, Regular (wght 400) */
   white-space: pre;
 }
 .nav__lang a:hover,
@@ -439,10 +453,36 @@ html.lenis, html.lenis body { height: auto; }
   line-height: var(--h4-lh);
   color: var(--light-grey);
 }
-.back__box { flex: none; width: 38px; height: 38px; color: var(--white); }
-.back__box rect { fill: var(--black); stroke: currentColor; stroke-opacity: .55; transition: stroke-opacity .2s ease; }
-.back__box path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.back:hover .back__box rect { stroke-opacity: 1; }
+/* Figma "Small button animation": 38×38, radius 4, 2px OUTSIDE stroke #414141, arrow ↙ (2px, #c4c4c4) */
+.back__box {
+  flex: none;
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--grey);
+}
+.back__box svg { display: block; width: 38px; height: 38px; overflow: visible; }
+.back__arrow path {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+}
+
+/* On hover the arrow plays once, to the end (like the prototype's chained variants):
+   Default → Variant2  ease-out 0.1s            (+4, −4)
+   Variant2 → Variant3 cubic-bezier(.63,0,.36,1) 0.3s (−4, +4)
+   Variant3 → Variant4 ease-out 0.1s            (back to 0) */
+.back__arrow.is-playing { animation: back-arrow .5s forwards; }
+@keyframes back-arrow {
+  0%   { transform: translate(0, 0);      animation-timing-function: cubic-bezier(0, 0, .58, 1); }
+  20%  { transform: translate(4px, -4px); animation-timing-function: cubic-bezier(.63, 0, .36, 1); }
+  80%  { transform: translate(-4px, 4px); animation-timing-function: cubic-bezier(0, 0, .58, 1); }
+  100% { transform: translate(0, 0); }
+}
 
 @media (max-width: 767.98px) {
   .contact__text { max-width: 247px; }
@@ -488,7 +528,19 @@ html.lenis, html.lenis body { height: auto; }
   height: 7px;
   border-radius: 50%;
   background: var(--red);
+  /* Figma "Status": Default → Variant2 after 0.6s, Variant2 → Default after 0.3s,
+     both Dissolve · Ease in-out · 0.5s. Dot goes 100% → 30% opacity. Loop = 1.9s. */
+  animation: status-pulse 1.9s infinite;
 }
+@keyframes status-pulse {
+  0%, 31.579%   { opacity: 1;  animation-timing-function: cubic-bezier(.42, 0, .58, 1); }  /* hold 0.6s, dissolve 0.5s */
+  57.895%, 73.684% { opacity: .3; animation-timing-function: cubic-bezier(.42, 0, .58, 1); } /* hold 0.3s, dissolve 0.5s */
+  100%          { opacity: 1; }
+}
+
+/* Figma "Timer": colon visible 1s / hidden 1s (instant, no transition) */
+.clock__colon.is-off { visibility: hidden; }
+
 .status__geo { margin: -5px 0 0 19px; }   /* aligned with the status text (7 + 12) */
 
 @media (min-width: 768px) {
@@ -524,8 +576,7 @@ html.lenis, html.lenis body { height: auto; }
   transition: color .2s ease;
 }
 .footer__links a:hover,
-.footer__links a[aria-current="page"],
-.footer__ext:hover { color: var(--white); }
+.footer__links a[aria-current="page"] { color: var(--white); }
 
 .footer__links--a { grid-column: 1; grid-row: 1; }
 .footer__links--b { grid-column: 2; grid-row: 1; }
@@ -537,7 +588,28 @@ html.lenis, html.lenis body { height: auto; }
   border-radius: 4px;
   white-space: nowrap;
 }
-.footer__ext svg { flex: none; width: 40px; height: 40px; }
+.footer__ext svg { flex: none; display: block; width: 40px; height: 40px; overflow: visible; }
+
+/* Figma "Botton desktop": arrow ↗ (2px, #676767) inside a 40×40 frame, no colour change on hover.
+   Hover plays once, to the end (chained variants, 0.5s total):
+   Default → Variant2  ease-out 0.1s             (−4, +4)
+   Variant2 → Variant3 cubic-bezier(.63,0,.36,1)  0.3s (+4, −4)
+   Variant3 → Variant4 ease-out 0.1s             (back to 0) */
+.ext__arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+}
+.ext__arrow.is-playing { animation: ext-arrow .5s forwards; }
+@keyframes ext-arrow {
+  0%   { transform: translate(0, 0);      animation-timing-function: cubic-bezier(0, 0, .58, 1); }
+  20%  { transform: translate(-4px, 4px); animation-timing-function: cubic-bezier(.63, 0, .36, 1); }
+  80%  { transform: translate(4px, -4px); animation-timing-function: cubic-bezier(0, 0, .58, 1); }
+  100% { transform: translate(0, 0); }
+}
 .footer__ext--linkedin  { grid-column: 1; grid-row: 2; margin-top: 28px; }
 .footer__ext--instagram { grid-column: 2; grid-row: 2; margin-top: 28px; }
 
@@ -545,7 +617,7 @@ html.lenis, html.lenis body { height: auto; }
   grid-column: 1 / -1;
   grid-row: 3;
   margin-top: 83px;
-  font-weight: 600;
+  font-weight: 400;            /* mobile frame: Regular */
   font-size: var(--h4-size);
   line-height: var(--h4-lh);
   color: var(--grey);
@@ -599,6 +671,7 @@ html.lenis, html.lenis body { height: auto; }
     grid-row: 2;
     max-width: 381px;
     margin-top: 41px;
+    font-weight: 600;          /* tablet + desktop frames: SemiBold */
     font-size: 16px;
     line-height: 20px;
   }
@@ -639,6 +712,9 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .status__dot { animation: none; }
+  .back__arrow.is-playing,
+  .ext__arrow.is-playing { animation: none; }
 }
 </style>
 </head>
@@ -782,10 +858,13 @@ html.lenis, html.lenis body { height: auto; }
       <p class="contact__text">To exercise any of these rights, contact us at <a href="mailto:astertypestudio@gmail.com">astertypestudio@gmail.com</a>.</p>
 
       <a class="back" href="">
-        <svg class="back__box" viewBox="0 0 38 38" aria-hidden="true">
-          <rect x="0.5" y="0.5" width="37" height="37" rx="4"/>
-          <path d="M11 19.5l5.5 5.5L27 13"/>
-        </svg>
+        <span class="back__box" aria-hidden="true">
+          <svg viewBox="0 0 38 38">
+            <g class="back__arrow">
+              <path d="M0 5.375H16.124M16.124 5.375L10.749 0M16.124 5.375L10.749 10.749" transform="matrix(-0.7071 0.7071 0.7071 0.7071 22.026 8.724)"/>
+            </g>
+          </svg>
+        </span>
         <span>Got what you needed?<br>Back to the studio.</span>
       </a>
     </div>
@@ -793,7 +872,7 @@ html.lenis, html.lenis body { height: auto; }
     <!-- ============================== STATUS ============================== -->
     <div class="status">
       <div class="status__now"><span class="status__dot" aria-hidden="true"></span><span>Studio status: open for projects</span></div>
-      <div class="status__geo">Porto — <span id="porto-time">21:04</span>, 41.1579°N 8.6291°W</div>
+      <div class="status__geo">Porto — <span id="porto-hh">21</span><span id="porto-colon" class="clock__colon" aria-hidden="true">:</span><span id="porto-mm">04</span>, 41.1579°N 8.6291°W</div>
     </div>
   </div>
 </main>
@@ -817,12 +896,12 @@ html.lenis, html.lenis body { height: auto; }
 
       <a class="footer__ext footer__ext--linkedin" href="#" target="_blank" rel="noopener">
         LinkedIn
-        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 25.5l11-11M16.5 14.5h9v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><g class="ext__arrow"><path d="M0 4.714H14.141M14.141 4.714L9.428 0M14.141 4.714L9.428 9.428" transform="matrix(0.7071 -0.7071 -0.7071 -0.7071 18.332 30.334)"/></g></svg>
       </a>
 
       <a class="footer__ext footer__ext--instagram" href="#" target="_blank" rel="noopener">
         Instagram
-        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 25.5l11-11M16.5 14.5h9v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><g class="ext__arrow"><path d="M0 4.714H14.141M14.141 4.714L9.428 0M14.141 4.714L9.428 9.428" transform="matrix(0.7071 -0.7071 -0.7071 -0.7071 18.332 30.334)"/></g></svg>
       </a>
 
       <p class="footer__legal">Astertype Studio © 2026 . All rights reserved. This site and its contents are the property of Astertype Studio and may not be copied, redistributed, or reused in any form without written consent.</p>
@@ -907,15 +986,48 @@ html.lenis, html.lenis body { height: auto; }
     });
   })();
 
-  // Live Porto time (design shows 21:04)
+  // Live Porto clock — HH:MM in real time, colon blinks every second
+  // Figma "Timer": Default (colon visible) → Variant2 (colon transparent), After delay 1s, instant.
   (function () {
-    var el = document.getElementById('porto-time');
-    if (!el || !window.Intl) return;
-    var fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' });
-    function tick() { el.textContent = fmt.format(new Date()); }
+    var hh = document.getElementById('porto-hh');
+    var mm = document.getElementById('porto-mm');
+    var colon = document.getElementById('porto-colon');
+    if (!hh || !mm || !colon || !window.Intl) return;
+
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Lisbon'
+    });
+
+    function tick() {
+      var now = new Date();
+      var parts = fmt.formatToParts(now);
+      var h = '', m = '';
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].type === 'hour') h = parts[i].value;
+        if (parts[i].type === 'minute') m = parts[i].value;
+      }
+      if (hh.textContent !== h) hh.textContent = h;
+      if (mm.textContent !== m) mm.textContent = m;
+
+      // visible on even seconds, hidden on odd seconds
+      colon.classList.toggle('is-off', now.getSeconds() % 2 === 1);
+
+      // re-sync to the next real second boundary (no drift)
+      setTimeout(tick, 1000 - now.getMilliseconds() + 4);
+    }
     tick();
-    setInterval(tick, 30000);
   })();
+
+  // Arrow buttons ("Back to the studio", LinkedIn, Instagram):
+  // play the 3-step Figma animation once per hover/focus, always to the end
+  document.querySelectorAll('.back, .footer__ext').forEach(function (link) {
+    var arrow = link.querySelector('.back__arrow, .ext__arrow');
+    if (!arrow) return;
+    function play() { arrow.classList.add('is-playing'); }
+    link.addEventListener('mouseenter', play);
+    link.addEventListener('focus', play);
+    arrow.addEventListener('animationend', function () { arrow.classList.remove('is-playing'); });
+  });
 </script>
 </body>
 </html>
