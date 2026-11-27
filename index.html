@@ -130,6 +130,10 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* Remove the grey/blue box browsers flash on tap (touch devices).
+   Keyboard focus still shows the outline below (:focus-visible). */
+html, a, button, [role="button"], label, summary { -webkit-tap-highlight-color: transparent; }
+
 body {
   margin: 0;
   background: var(--black);
@@ -184,9 +188,9 @@ html.lenis, html.lenis body { height: auto; }
    press    = cursor-04   hotspot 19 3  (while pressing a link/button)
    Only for devices with a mouse. The last value is the fallback cursor. */
 :root {
-  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M9.2,12.79l-1.77-2.53c-2.14-3.06-1.4-7.28,1.66-9.42l8.82,12.6,3.03-2.12c1.81-1.27,4.3-.83,5.57.98h0l-3.72,8.11,1.45,2.07-12.4,8.68-7.37-10.53L9.2,12.79Z'/%3E%3C/svg%3E") 9 1, pointer;
-  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M26.57,16v3.67c0,5.25-4.25,9.5-9.5,9.5h-6.97c0-.31-4.67-12.63-4.67-12.63l10.02-4.91v-2.04c0-3.74,3.03-6.76,6.76-6.76v11.34h-6.49v2.28c0,2.12,1.05,3.99,2.65,5.13-1.58.9-2.65,2.6-2.65,4.54h1.83c0-1.86,1.52-3.38,3.38-3.38h1.07v-1.83c-2.45,0-4.45-2-4.45-4.46v-.45H26.57Z'/%3E%3C/svg%3E") 19 3, pointer;
-  --cursor-press: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M25.45,2.92v9.17l-5.76-5.76-.07-.07c.29-.5.64-.95,1.05-1.36C21.89,3.68,23.58,2.92,25.45,2.92Z'/%3E%3Cpath fill='%23fff' d='M25.45,14.68v14.4h-11.77c-3.11,0-5.78-1.85-6.99-4.5-.48-1.06.33-2.26,1.49-2.26h2.51c.39,1.3,1.6,2.24,3.04,2.21,1.64-.02,3.02-1.38,3.08-3.02.05-1.78-1.37-3.23-3.13-3.23-1.41,0-2.6.93-2.99,2.21h-2.51c-1.16,0-1.97-1.2-1.48-2.26,1.2-2.65,3.87-4.49,6.98-4.49.48,0,.94.05,1.39.13l-1.38-1.39c-1.32-1.31-1.98-3.04-1.98-4.78s.66-3.46,1.98-4.78l2.29,2.3,1.12,1.11h0l7.44,7.44L25.45,14.68Z'/%3E%3C/svg%3E") 13 4, auto;
+  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M25.45,2.92v9.17l-5.76-5.76-.07-.07c.29-.5.64-.95,1.05-1.36C21.89,3.68,23.58,2.92,25.45,2.92Z'/%3E%3Cpath fill='%23fff' d='M25.45,14.68v14.4h-11.77c-3.11,0-5.78-1.85-6.99-4.5-.48-1.06.33-2.26,1.49-2.26h2.51c.39,1.3,1.6,2.24,3.04,2.21,1.64-.02,3.02-1.38,3.08-3.02.05-1.78-1.37-3.23-3.13-3.23-1.41,0-2.6.93-2.99,2.21h-2.51c-1.16,0-1.97-1.2-1.48-2.26,1.2-2.65,3.87-4.49,6.98-4.49.48,0,.94.05,1.39.13l-1.38-1.39c-1.32-1.31-1.98-3.04-1.98-4.78s.66-3.46,1.98-4.78l2.29,2.3,1.12,1.11h0l7.44,7.44L25.45,14.68Z'/%3E%3C/svg%3E") 13 4, auto;
+  --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M9.2,12.79l-1.77-2.53c-2.14-3.06-1.4-7.28,1.66-9.42l8.82,12.6,3.03-2.12c1.81-1.27,4.3-.83,5.57.98h0l-3.72,8.11,1.45,2.07-12.4,8.68-7.37-10.53L9.2,12.79Z'/%3E%3C/svg%3E") 9 1, pointer;
+  --cursor-press: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M26.57,16v3.67c0,5.25-4.25,9.5-9.5,9.5h-6.97c0-.31-4.67-12.63-4.67-12.63l10.02-4.91v-2.04c0-3.74,3.03-6.76,6.76-6.76v11.34h-6.49v2.28c0,2.12,1.05,3.99,2.65,5.13-1.58.9-2.65,2.6-2.65,4.54h1.83c0-1.86,1.52-3.38,3.38-3.38h1.07v-1.83c-2.45,0-4.45-2-4.45-4.46v-.45H26.57Z'/%3E%3C/svg%3E") 19 3, pointer;
 }
 @media (hover: hover) and (pointer: fine) {
   html { cursor: var(--cursor-default); }
