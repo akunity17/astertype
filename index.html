@@ -1,193 +1,921 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Astertype Studio</title>
-</head>
-<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Astertype Studio</title>
+<meta name="description" content="How we collect, use, and protect your personal data when you visit this site.">
 
-<div id="preloader">
-  <header class="topbar">
-    <div class="logo">ASTERTYPE<br>STUDIO</div>
-  </header>
-
-  <div class="scene">
-    <div class="tilt">
-      <div class="extrude">
-        <img src="loader.svg" alt="icon">
-      </div>
-    </div>
-  </div>
-
-  <div class="content">
-    <h1>[STAY<br>TUNED]</h1>
-    <p class="subtitle">What's worth making <br>takes time</p>
-    <a href="https://www.instagram.com/andre_marques._" class="ig-btn">Follow me on instagram</a>
-  </div>
-</div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,600..700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-@font-face {
-  font-family: 'Switzer';
-  src: url('Switzer-BoldItalic.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+/* ==========================================================================
+   Astertype — Privacy page
+   Source: Figma "Privacy mobile" (360), "Privacy tablet" (768), "Privacy desktop" (1440)
+
+   Mobile-first. Three layouts:
+     mobile   < 768px
+     tablet   768px – 1199px   (designed at 768)
+     desktop  ≥ 1200px         (designed at 1440, content capped at 1280)
+
+   Every size below is a Figma token / measured value, exposed as a custom
+   property so each breakpoint only overrides the variables it changes.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Colours (Figma variables) */
+  --black: #040509;
+  --white: #c4c4c4;
+  --light-grey: #676767;
+  --grey: #414141;
+  --dark-grey: #121212;
+  --red: #ae2b1f;
+
+  /* Typefaces */
+  --font-display: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-text: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale — MOBILE (same as tablet) */
+  --h1-size: 38px;  --h1-lh: 36px;
+  --h2-size: 24px;  --h2-lh: 26px;
+  --h3-size: 16px;  --h3-lh: 18px;
+  --h4-size: 14px;  --h4-lh: 16px;
+
+  /* Layout — MOBILE */
+  --m: 30px;                 /* page margin */
+  --nav-h: 54px;
+
+  --hero-pt: 160px;          /* nav bottom → h1 top */
+  --hero-min: 505px;         /* nav bottom → first divider */
+  --hero-gap: 44px;          /* h1 → lead */
+  --updated-gap: 12px;       /* lead → "Last updated" */
+
+  --sec-pt: 48px;            /* divider → section title */
+  --sec-pb: 92px;            /* last item → next divider */
+  --sec-pb-last: 45px;       /* last item → "To exercise…" divider */
+  --title-gap: 44px;         /* title box (30px) → first item */
+  --item-gap: 68px;          /* vertical gap between items */
+  --meta-h: 15px;            /* height of "[01]" / label rows */
+
+  --contact-pt: 48px;
+  --contact-gap: 46px;       /* text → back button */
+  --contact-pb: 146px;       /* back button → divider */
+
+  --status-pt: 16px;
+  --status-pb: 21px;
+
+  --pill-w: 145px;           /* "Scroll to top" */
 }
 
-@font-face {
-  font-family: 'Switzer';
-  src: url('Switzer-Semibold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+    --m: 60px;
+    --nav-h: 64px;
+
+    --hero-pt: 150px;
+    --hero-min: 505px;
+    --hero-gap: 40px;
+    --updated-gap: 8px;
+
+    --sec-pt: 50px;
+    --sec-pb: 92px;
+    --sec-pb-last: 50px;
+    --meta-h: 19px;
+
+    --contact-pt: 50px;
+    --contact-pb: 112px;
+
+    --status-pt: 16px;
+    --status-pb: 19px;
+
+    --pill-w: 118px;
+  }
 }
 
-* {
-  box-sizing: border-box;
+/* Desktop */
+@media (min-width: 1200px) {
+  :root {
+    --h1-size: 56px;  --h1-lh: 54px;
+    --h2-size: 34px;  --h2-lh: 36px;
+    --h3-size: 20px;  --h3-lh: 24px;
+    --h4-size: 16px;  --h4-lh: 18px;
+
+    --m: 80px;
+    --hero-pt: 150px;
+    --hero-min: 516px;
+    --updated-gap: 12px;
+
+    --sec-pt: 50px;
+    --sec-pb: 135px;
+    --sec-pb-last: 68px;
+    --title-gap: 52px;
+    --item-gap: 135px;
+
+    --contact-gap: 66px;
+    --contact-pb: 111px;
+
+    --status-pt: 25px;
+    --status-pb: 25px;
+
+    --pill-w: 142px;
+  }
 }
 
-#preloader {
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+a:focus-visible, button:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 4px;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--m), 1280px);
+  margin-inline: auto;
+}
+
+/* Everything sits above the fixed gradient */
+.nav, main, .footer { position: relative; z-index: 1; }
+
+/* Gradient band pinned to the bottom of the viewport.
+   Figma: 925px gradient (#040509 → #737373) clipped to the bottom 353px. */
+.glow {
   position: fixed;
-  inset: 0;
-  background: #040509;
-  transition: opacity 0.8s ease;
-  font-family: 'Switzer', sans-serif;
-  overflow: hidden;
+  inset: auto 0 0 0;
+  height: 353px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #040509, #737373) top / 100% 925px no-repeat;
 }
 
-/* logo — igual em mobile e desktop */
-.topbar {
-  position: absolute;
-  top: 15px;
-  left: 30px;
+/* ---------- Lenis (smooth scroll) base styles ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--nav-h);
+  background: var(--black);
 }
 
-.logo {
-  font-weight: 500;
-  font-style: italic;
-  color: #E5E5E5;
-  font-size: 1.1rem;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-/* loader — tamanho fixo, sempre centrado no ecra */
-.scene {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-55%, -70%);
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-
-.tilt {
-  transform: rotateX(44deg) rotateY(31deg) rotateZ(-16deg) translateX(20px);
-  transform-style: preserve-3d;
-}
-
-.extrude {
-  position: relative;
-  width: 8rem;
-  aspect-ratio: 1 / 1;
-  transform-style: preserve-3d;
-  animation: spin 2.5s cubic-bezier(0.66, 0, 0.34, 1) infinite;
-}
-
-.extrude img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+.nav__inner {
   height: 100%;
-}
-
-@keyframes spin {
-  from { transform: rotateZ(0deg); }
-  to   { transform: rotateZ(360deg); }
-}
-
-/* texto — mesmas cores/estilo em mobile e desktop */
-.content {
-  position: absolute;
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-}
-
-h1 {
-  font-weight: 800;
-  color: #E5E5E5;
-  font-size: clamp(2.2rem, 14vw, 3rem);
-  line-height: 1;
-  text-transform: uppercase;
-  margin: 0 0 2rem;
-}
-
-.subtitle {
-  font-weight: 600;
-  color: #868687;
-  font-size: 1.5rem;
-  line-height: 1;
-  margin: 0 0 1.25rem;
-}
-
-.ig-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 40px;
-  width: 100%;
-  background: #313131;
-  color: #9E9E9E;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-text);
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.63, 0, 0.36, 1);
+  font-size: 20px;
+  line-height: 36px;
+  color: var(--white);
 }
 
-.ig-btn:hover {
-  background: #E5E5E5;
-  color: #313131;
+.nav__link,
+.nav__lang {
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  color: var(--light-grey);
+  transition: color .2s ease;
+}
+.nav__link:hover { color: var(--white); }
+
+.nav__lang {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  white-space: pre;
+}
+.nav__lang a:hover,
+.nav__lang a[aria-current] { color: var(--white); }
+
+/* Burger (mobile) */
+.nav__burger {
+  position: relative;
+  width: 33px;
+  height: 14px;
+  margin-right: 0;
+}
+.nav__burger::before,
+.nav__burger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--white);
+  transition: transform .25s ease, top .25s ease;
+}
+.nav__burger::before { top: 0; }
+.nav__burger::after  { top: 11px; }
+.nav[data-open="true"] .nav__burger::before { top: 5px; transform: rotate(45deg); }
+.nav[data-open="true"] .nav__burger::after  { top: 5px; transform: rotate(-45deg); }
+
+/* Mobile menu panel (placeholder — no menu frame was provided) */
+.nav__panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 24px var(--m) 32px;
+  background: var(--black);
+  flex-direction: column;
+  gap: 24px;
+}
+.nav[data-open="true"] .nav__panel { display: flex; }
+.nav__links { display: flex; flex-direction: column; gap: 24px; }
+
+@media (min-width: 768px) {
+  .nav__inner {
+    display: grid;
+    grid-template-columns: 249px 1fr auto;     /* logo col → Info at x=309 */
+    justify-content: normal;
+  }
+  .nav__burger { display: none; }
+  .nav__panel { display: contents; }
+  .nav__links {
+    display: grid;
+    grid-template-columns: 84px 82px auto;     /* Info 84 · Index 82 · Contact */
+    justify-content: start;
+    gap: 0;
+  }
 }
 
-/* desktop — so ajusta espacamento e larguras, nao cores/design */
-@media (min-width: 900px) {
-  .topbar {
-    top: 20px;
-    left: 40px;
-  }
+@media (min-width: 1200px) {
+  .nav__inner { grid-template-columns: 520px 1fr auto; }
+  .nav__links { grid-template-columns: 130px 130px auto; }
+}
 
-  .content {
-    left: 40px;
-    right: auto;
-    bottom: 60px;
-    max-width: 420px;
-  }
+/* ---------- Hero ---------- */
+.hero {
+  min-height: var(--hero-min);
+  padding-top: var(--hero-pt);
+}
 
-  .ig-btn {
-    width: auto;
-    padding: 0 2rem;
-  }
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h1-size);
+  line-height: var(--h1-lh);
+  font-variation-settings: "wdth" 100;
+  color: var(--white);
+}
 
-  .scene {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.hero__sub { margin-top: var(--hero-gap); }
+
+.hero__lead {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--h2-size);
+  line-height: var(--h2-lh);
+  font-variation-settings: "wdth" 100;
+  color: var(--light-grey);
+}
+
+.hero__updated {
+  margin-top: var(--updated-gap);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  color: var(--light-grey);
+}
+
+@media (min-width: 768px) {
+  .hero__lead { max-width: 457px; }
+}
+
+@media (min-width: 1200px) {
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 500px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: start;
+  }
+  .hero__title { grid-column: 2; grid-row: 1; text-align: right; }
+  .hero__sub   { grid-column: 1; grid-row: 1; margin-top: 0; }
+  .hero__lead  { max-width: 500px; }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  border-top: 1px solid var(--grey);
+  padding: var(--sec-pt) 0 var(--sec-pb);
+}
+.section--last { padding-bottom: var(--sec-pb-last); }
+
+.section__title {
+  height: 30px;                        /* Figma text box; line-height may exceed it */
+  margin-bottom: var(--title-gap);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--h2-size);
+  line-height: var(--h2-lh);
+  font-variation-settings: "wdth" 100;
+  color: var(--white);
+}
+
+/* "General Information" is hard-coded 34/36 in all three frames (not tokenised) */
+.section__title--lead { font-size: 34px; line-height: 36px; }
+
+.section__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-gap);
+}
+
+/* Item = [nn] + label + text */
+.item { color: var(--white); }
+
+.item__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.item__index,
+.item__label {
+  height: var(--meta-h);               /* 19px (tablet/desktop) · 15px (mobile) */
+  white-space: nowrap;
+}
+.item__label { color: var(--light-grey); }
+
+.item p + p { margin-top: var(--h3-lh); }  /* the blank line between paragraphs */
+
+.item a { transition: color .2s ease; }
+.item a:hover { color: var(--light-grey); }
+
+.rights__line { display: inline; }
+
+/* Tablet: title left (231px), items right (396px). Last section: 2×2 below title. */
+@media (min-width: 768px) {
+  .section--side {
+    display: grid;
+    grid-template-columns: 231px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: start;
+  }
+  .section__title { max-width: 147px; }
+  .section--side .section__title { height: auto; margin: 0; }
+  .section--stack .section__title { height: auto; margin-bottom: 48px; }
+
+  .section__body--two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));    /* 314 + 20 + 314 */
+    gap: var(--item-gap) 20px;
   }
 }
 
+/* Desktop: title above, items in columns */
+@media (min-width: 1200px) {
+  .section--side { display: block; }
+  .section__title,
+  .section--side .section__title,
+  .section--stack .section__title {
+    max-width: none;
+    height: 30px;
+    margin-bottom: var(--title-gap);
+  }
+
+  .section__body--three,
+  .section__body--two { display: grid; gap: 0 20px; }
+  .section__body--three { grid-template-columns: repeat(3, minmax(0, 370px)); }
+  .section__body--two   { grid-template-columns: repeat(2, minmax(0, 500px)); row-gap: var(--item-gap); }
+
+  .rights__line { display: block; }
+}
+
+/* ---------- Contact / back to studio ---------- */
+.contact {
+  border-top: 1px solid var(--grey);
+  padding: var(--contact-pt) 0 var(--contact-pb);
+}
+
+.contact__text {
+  max-width: 498px;
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  color: var(--light-grey);
+}
+.contact__text a { transition: color .2s ease; }
+.contact__text a:hover { color: var(--white); }
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: var(--contact-gap);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  color: var(--light-grey);
+}
+.back__box { flex: none; width: 38px; height: 38px; color: var(--white); }
+.back__box rect { fill: var(--black); stroke: currentColor; stroke-opacity: .55; transition: stroke-opacity .2s ease; }
+.back__box path { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.back:hover .back__box rect { stroke-opacity: 1; }
+
+@media (max-width: 767.98px) {
+  .contact__text { max-width: 247px; }
+}
+
+@media (min-width: 768px) {
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    align-items: start;
+  }
+  .contact__text { grid-column: 2; grid-row: 1; max-width: none; }
+  .back { grid-column: 1; grid-row: 1; margin-top: 2px; }
+}
+
+@media (min-width: 1200px) {
+  .contact { display: block; }
+  .contact__text { max-width: 498px; }
+  .back { margin-top: var(--contact-gap); }
+}
+
+/* ---------- Status bar ---------- */
+.status {
+  border-top: 1px solid var(--grey);
+  padding: var(--status-pt) 0 var(--status-pb);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  color: var(--light-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.status__now {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 28px;
+}
+.status__dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.status__geo { margin: -5px 0 0 19px; }   /* aligned with the status text (7 + 12) */
+
+@media (min-width: 768px) {
+  .status {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .status__geo { margin: 0; text-align: right; }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--dark-grey);
+  border-top: 1px solid var(--grey);   /* full-bleed rule */
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);   /* mobile: x=30 / x=185 */
+  align-content: start;
+  min-height: 395px;                              /* divider position */
+  padding-top: 25px;
+}
+
+.footer__links > li { height: 19px; margin-bottom: 5px; }
+.footer__links a,
+.footer__ext {
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  color: var(--light-grey);
+  transition: color .2s ease;
+}
+.footer__links a:hover,
+.footer__links a[aria-current="page"],
+.footer__ext:hover { color: var(--white); }
+
+.footer__links--a { grid-column: 1; grid-row: 1; }
+.footer__links--b { grid-column: 2; grid-row: 1; }
+
+.footer__ext {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.footer__ext svg { flex: none; width: 40px; height: 40px; }
+.footer__ext--linkedin  { grid-column: 1; grid-row: 2; margin-top: 28px; }
+.footer__ext--instagram { grid-column: 2; grid-row: 2; margin-top: 28px; }
+
+.footer__legal {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  margin-top: 83px;
+  font-weight: 600;
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  color: var(--grey);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--grey);
+  padding: 24px 0 43px;
+}
+.footer__address {
+  order: -1;
+  font-weight: 600;
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  color: var(--grey);
+}
+.footer__address a:hover { color: var(--light-grey); }
+
+.pill {
+  align-self: flex-start;
+  width: var(--pill-w);
+  height: 30px;
+  margin-top: 25px;
+  border-radius: 24px;
+  background: var(--red);
+  color: var(--dark-grey);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  text-align: center;
+  white-space: nowrap;
+  transition: filter .2s ease;
+}
+.pill:hover { filter: brightness(1.15); }
+
+/* Tablet footer (60 / 193 / 458 / 590) */
+@media (min-width: 768px) {
+  .footer__top {
+    grid-template-columns: 133px 265px 132px minmax(0, 1fr);
+    min-height: 375px;
+    padding-top: 42px;
+  }
+  .footer__links--a { grid-column: 1; grid-row: 1; }
+  .footer__links--b { grid-column: 2; grid-row: 1; }
+  .footer__ext--linkedin  { grid-column: 3; grid-row: 1; margin-top: -10px; }
+  .footer__ext--instagram { grid-column: 4; grid-row: 1; margin-top: -10px; }
+
+  .footer__legal {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    max-width: 381px;
+    margin-top: 41px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .footer__bottom {
+    display: grid;
+    grid-template-columns: 398px minmax(0, 1fr);   /* address at x=458 */
+    padding: 24px 0 29px;
+  }
+  .footer__address { order: 0; grid-column: 2; grid-row: 1; }
+  .pill { grid-column: 1; grid-row: 1; margin-top: 0; }
+}
+
+/* Desktop footer (80 / 243 / 569 / 730 / 893) */
+@media (min-width: 1200px) {
+  .footer__top {
+    grid-template-columns: 163px 326px 161px 163px minmax(0, 1fr);
+    min-height: 261px;
+    padding-top: 40px;
+  }
+  .footer__ext--linkedin  { grid-column: 3; margin-top: -7px; }
+  .footer__ext--instagram { grid-column: 4; margin-top: -7px; }
+
+  .footer__legal {
+    grid-column: 5;
+    grid-row: 1;
+    max-width: 467px;
+    margin-top: -4px;
+  }
+
+  .footer__bottom {
+    grid-template-columns: 163px 326px 161px 163px minmax(0, 1fr);
+    padding: 18px 0 29px;
+  }
+  .footer__address { grid-column: 5; margin-top: 2px; }
+  .pill { grid-column: 1 / 3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
 </style>
+</head>
 
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav" id="nav" data-open="false">
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="/">ASTERTYPE</a>
+
+    <button class="nav__burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-panel"></button>
+
+    <div class="nav__panel" id="nav-panel">
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link" href="/info">Info</a>
+        <a class="nav__link" href="/index">Index</a>
+        <a class="nav__link" href="/contact">Contact</a>
+      </nav>
+      <div class="nav__lang" aria-label="Language"><a href="/pt" lang="pt">PT</a>   /   <a href="/en" lang="en" aria-current="true">EN</a></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============================== HERO ============================== -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="hero__title">Your privacy,<br>handled properly</h1>
+      <div class="hero__sub">
+        <p class="hero__lead">How we collect, use, and protect your personal data when you visit this site</p>
+        <p class="hero__updated">— Last updated 17.09.2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 1 · GENERAL ============================== -->
+  <div class="wrap">
+    <section class="section section--side">
+      <h2 class="section__title section__title--lead">General Information</h2>
+
+      <div class="section__body section__body--three">
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[01]</p>
+            <p class="item__label">Who we are</p>
+          </header>
+          <p>Astertype Studio is a design studio based in Porto, Portugal.</p>
+          <p>Contact — <a href="mailto:astertypestudio@gmail.com">astertypestudio@gmail.com</a><br>If you have any questions about this policy or how we handle your data, reach out at the email above.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[02]</p>
+            <p class="item__label">What data we collect</p>
+          </header>
+          <p>When you use our contact form, we collect what you provide your name, email address, and the content of your message, nothing more.</p>
+          <p>We also use Google Analytics to understand how visitors use the site, which can include your IP address, browser type, device, the pages you visit, and time spent on each.</p>
+          <p>We don’t collect any special categories of data, such as health, religious, or political information, and we never ask for more than a form needs.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================== 2 · HOW WE USE ============================== -->
+    <section class="section section--side">
+      <h2 class="section__title">How we use your data</h2>
+
+      <div class="section__body section__body--three">
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[03]</p>
+            <p class="item__label">Why we collect it</p>
+          </header>
+          <p>We use your data to respond to your enquiries when you contact us through the form, and to understand how the site is used so we can improve it over time.</p>
+          <p>Seeing which pages get visited and which don’t helps us know where things are working and where they need attention.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[04]</p>
+            <p class="item__label">Legal basis for processing</p>
+          </header>
+          <p>We mainly use Google Analytics to see how visitors move through the site, which pages, for how long, and from where.</p>
+          <p>You can block or delete cookies at any time through your browser settings; this won’t stop you using the site, it just means we won’t see your visit in our analytics.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[05]</p>
+            <p class="item__label">Data sharing</p>
+          </header>
+          <p>We don’t sell, rent, or trade your data. We share it only with service providers who help us run the site, like Google as our analytics provider, and only to the extent their service requires, under their own privacy terms.</p>
+          <p>We may also share it if legally required to, but never for marketing purposes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================== 3 · RIGHTS & SECURITY ============================== -->
+    <section class="section section--stack section--last">
+      <h2 class="section__title">Your rights &amp; security</h2>
+
+      <div class="section__body section__body--two">
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[06]</p>
+            <p class="item__label">Data retention</p>
+          </header>
+          <p>We keep contact form submissions only as long as needed to respond to your enquiry, then delete or anonymize them, unless the law requires otherwise. Analytics data follows our provider’s own retention settings.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[07]</p>
+            <p class="item__label">Data security</p>
+          </header>
+          <p>We take reasonable technical and organizational measures to protect your data against unauthorized access, loss, or misuse.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[08]</p>
+            <p class="item__label">Your rights</p>
+          </header>
+          <p>Under the GDPR, you have the right to</p>
+          <p class="rights"><span class="rights__line">Access the personal data we hold about you;</span> <span class="rights__line">Request correction of inaccurate data;</span> Request deletion of your data; Object to or restrict certain processing; Request a copy of your data in a portable format; Withdraw consent at any time, where processing is based on consent.</p>
+        </article>
+
+        <article class="item">
+          <header class="item__head">
+            <p class="item__index">[09]</p>
+            <p class="item__label">Changes to this policy</p>
+          </header>
+          <p>We may update this policy time to time. Changes will appear on this page with a new “Last updated” date.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT / BACK ============================== -->
+    <div class="contact">
+      <p class="contact__text">To exercise any of these rights, contact us at <a href="mailto:astertypestudio@gmail.com">astertypestudio@gmail.com</a>.</p>
+
+      <a class="back" href="">
+        <svg class="back__box" viewBox="0 0 38 38" aria-hidden="true">
+          <rect x="0.5" y="0.5" width="37" height="37" rx="4"/>
+          <path d="M11 19.5l5.5 5.5L27 13"/>
+        </svg>
+        <span>Got what you needed?<br>Back to the studio.</span>
+      </a>
+    </div>
+
+    <!-- ============================== STATUS ============================== -->
+    <div class="status">
+      <div class="status__now"><span class="status__dot" aria-hidden="true"></span><span>Studio status: open for projects</span></div>
+      <div class="status__geo">Porto — <span id="porto-time">21:04</span>, 41.1579°N 8.6291°W</div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <ul class="footer__links footer__links--a">
+        <li><a href="/info">Info</a></li>
+        <li><a href="/index">Index</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/notes">Notes</a></li>
+      </ul>
+
+      <ul class="footer__links footer__links--b">
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/terms">Terms of Use</a></li>
+        <li><a href="/privacy" aria-current="page">Privacy Policy</a></li>
+      </ul>
+
+      <a class="footer__ext footer__ext--linkedin" href="#" target="_blank" rel="noopener">
+        LinkedIn
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 25.5l11-11M16.5 14.5h9v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <a class="footer__ext footer__ext--instagram" href="#" target="_blank" rel="noopener">
+        Instagram
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14.5 25.5l11-11M16.5 14.5h9v9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <p class="footer__legal">Astertype Studio © 2026 . All rights reserved. This site and its contents are the property of Astertype Studio and may not be copied, redistributed, or reused in any form without written consent.</p>
+    </div>
+
+    <div class="footer__bottom">
+      <button class="pill" type="button" id="to-top">Scroll to top</button>
+      <p class="footer__address">Based in Porto, Portugal<br><a href="mailto:astertypestudio@gmail.com">Astertypestudio@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script>
+  // Mobile menu
+  (function () {
+    var nav = document.getElementById('nav');
+    var burger = nav.querySelector('.nav__burger');
+    function set(open) {
+      nav.setAttribute('data-open', open);
+      burger.setAttribute('aria-expanded', open);
+    }
+    burger.addEventListener('click', function () {
+      set(nav.getAttribute('data-open') !== 'true');
+    });
+    nav.querySelectorAll('.nav__panel a').forEach(function (a) {
+      a.addEventListener('click', function () { set(false); });
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 768) set(false); });
+  })();
+
+  // Smooth scroll (Lenis) + "Scroll to top"
+  // Figma prototype: ON_CLICK → scroll to top, Ease out, 1.4s.
+  // Figma "Ease out" = cubic-bezier(0, 0, 0.58, 1).
+  (function () {
+    var SCROLL_TOP = { duration: 1.4, bezier: [0.63, 0, 0.36, 1] };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function cubicBezier(x1, y1, x2, y2) {
+      var cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+      var cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+      function X(t) { return ((ax * t + bx) * t + cx) * t; }
+      function Y(t) { return ((ay * t + by) * t + cy) * t; }
+      return function (x) {
+        if (x <= 0) return 0;
+        if (x >= 1) return 1;
+        var lo = 0, hi = 1, t = x;
+        for (var i = 0; i < 24; i++) {
+          var v = X(t);
+          if (Math.abs(v - x) < 1e-6) break;
+          if (v < x) lo = t; else hi = t;
+          t = (lo + hi) / 2;
+        }
+        return Y(t);
+      };
+    }
+    var ease = cubicBezier.apply(null, SCROLL_TOP.bezier);
+
+    // Lenis (loaded from the CDN above). Skipped for reduced motion.
+    var lenis = null;
+    if (window.Lenis && !reduce) {
+      lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      (function raf(time) { lenis.raf(time); requestAnimationFrame(raf); })(performance.now());
+    }
+
+    // Fallback tween if Lenis is not available
+    function tweenToTop() {
+      var start = window.scrollY;
+      if (!start) return;
+      var t0 = performance.now();
+      (function step(now) {
+        var p = Math.min((now - t0) / (SCROLL_TOP.duration * 1000), 1);
+        window.scrollTo(0, start * (1 - ease(p)));
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+
+    document.getElementById('to-top').addEventListener('click', function () {
+      if (reduce) { window.scrollTo(0, 0); return; }
+      if (lenis) lenis.scrollTo(0, { duration: SCROLL_TOP.duration, easing: ease });
+      else tweenToTop();
+    });
+  })();
+
+  // Live Porto time (design shows 21:04)
+  (function () {
+    var el = document.getElementById('porto-time');
+    if (!el || !window.Intl) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 30000);
+  })();
+</script>
 </body>
 </html>
